@@ -11,6 +11,7 @@ namespace DefaultNamespace.Data
         public WorldData(string inititalLevel)
         {
             PositionOnLevel = new PositionOnLevel(inititalLevel);
+            LootData = new LootData();
         }
     }
 }

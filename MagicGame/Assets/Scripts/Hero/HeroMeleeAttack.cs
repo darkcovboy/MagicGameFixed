@@ -16,6 +16,7 @@ namespace Hero
         [SerializeField] private HeroAnimator _heroAnimator;
         [SerializeField] private CharacterController _characterController;
         [SerializeField] private StarterAssetsInputs _playerInput;
+        [SerializeField] private GameObject _slashPrefab;
 
         private static int _layerMask;
         private Collider[] _hits = new Collider[3];

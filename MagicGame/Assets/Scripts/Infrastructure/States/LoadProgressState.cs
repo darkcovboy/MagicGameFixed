@@ -37,6 +37,7 @@ namespace Infrastructure.States
         {
             var progress = new PlayerProgress("Main");
 
+            progress.WorldData.LootData.Collected = 0;
             progress.HeroState.MaxHealth = 50;
             progress.HeroStats.Damage = 20f;
             progress.HeroStats.DamageRadius = 1f;

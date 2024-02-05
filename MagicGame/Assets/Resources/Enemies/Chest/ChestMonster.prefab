@@ -820,6 +820,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyHealth: {fileID: 2330029282200489015}
+  _move: {fileID: 8990279142031062518}
   _enemyAnimator: {fileID: 7578260927142315603}
   _deathFX: {fileID: 130332, guid: 2e30d40b54f77704d815fabce00d7b2e, type: 3}
 --- !u!114 &2330029282200489015

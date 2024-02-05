@@ -9,6 +9,7 @@ namespace DefaultNamespace.Data
         public WorldData WorldData;
         public Stats HeroStats;
         public KillData KillData;
+        public UncollectedLoot UncollectedLoot;
 
         public PlayerProgress(string inititalLevel)
         {
@@ -16,6 +17,7 @@ namespace DefaultNamespace.Data
             HeroState = new State();
             HeroStats = new Stats();
             KillData = new KillData();
+            UncollectedLoot = new UncollectedLoot();;
         }
 
     }

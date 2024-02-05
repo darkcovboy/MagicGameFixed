@@ -18,7 +18,7 @@ namespace Infrastructure.States
             _states = new Dictionary<Type, IExitableState>()
             {
                 [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, staticDataService),
-                [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, loadingCurtain, gameFactory, persistentProgressService),
+                [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, loadingCurtain, gameFactory, persistentProgressService, staticDataService),
                 [typeof(LoadProgressState)] = new LoadProgressState(this, persistentProgressService, savedLoadService),
                 [typeof(GameLoopState)] = new GameLoopState(this)
             };

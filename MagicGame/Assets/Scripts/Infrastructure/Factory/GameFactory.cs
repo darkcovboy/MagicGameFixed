@@ -4,7 +4,9 @@ using Hero;
 using Infrastructure.AssetManagement;
 using Infrastructure.Services.PersistentProgress;
 using Logic;
+using Logic.EnemySpawner;
 using StaticData;
+using UI;
 using UnityEngine;
 using Zenject;
 
@@ -36,12 +38,25 @@ namespace Infrastructure.Factory
         }
 
 
-        public void CreateHud(DiContainer container) => InstantiateRegistered(container,Paths.HudPath);
+        public void CreateHud(DiContainer container)
+        {
+            GameObject hud =InstantiateRegistered(container, Paths.HudPath);
+            hud.GetComponentInChildren<LootCounter>().Construct(_progressService.Progress.WorldData);
+        }
 
         public void CleanUp()
         {
             ProgressReaders.Clear();
             ProgressWriters.Clear();
+        }
+
+        public void CreateSpawner(Vector3 at, string enemySpawnerID, MonsterTypeId monsterTypeId)
+        {
+            var spawner = InstantiateRegistered(Paths.Spawner, at)
+                .GetComponent<SpawnPoint>();
+            
+            spawner.Constructor(this);
+            spawner.Initialize(enemySpawnerID, monsterTypeId);
         }
 
         public GameObject CreateMonster(MonsterTypeId typeId, Transform parent)
@@ -65,8 +80,7 @@ namespace Infrastructure.Factory
         public LootPiece CreateLoot()
         {
             var lootPiece = InstantiateRegistered(Paths.Loot).GetComponent<LootPiece>();
-            
-            lootPiece.Construct(_progressService.Progress.WorldData);
+            lootPiece.Construct(_progressService.Progress.WorldData, this);
             return lootPiece;
         }
 
@@ -97,7 +111,7 @@ namespace Infrastructure.Factory
                 Register(progressReader);
         }
 
-        public void Register(ISavedProgressReader progressReader)
+        private void Register(ISavedProgressReader progressReader)
         {
             if(progressReader is ISavedProgress progressWriter)
                 ProgressWriters.Add(progressWriter);
